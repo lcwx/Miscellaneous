@@ -165,16 +165,16 @@ void print() {
 		for (int l = 0; l < HandL; l++) {
 			if (board_1[h][l] == 8) {
 				//Changed over there
-				cout << "©ï ";
+				cout << "Â©Ã¯ ";
 			}
 			else if (board_2[h][l] == 0) {
-				cout << "¡¤";
+				cout << "Â¡Â¤";
 			}
 			else if (board_2[h][l] == 1) {
-				cout << "¡ñ";
+				cout << "Â¡Ã±";
 			}
 			else if (board_2[h][l] == 2) {
-				cout << "¡ð";
+				cout << "Â¡Ã°";
 			}
 		}
 		cout << endl;
@@ -218,16 +218,16 @@ void initialization() {
 		for (int l = 0; l < HandL; l++) {
 			if (board_1[h][l] == 8) {
 				//Changed over there
-				cout << "©ï ";
+				cout << "Â©Ã¯ ";
 			}
 			else if (board_2[h][l] == 0) {
-				cout << "¡¤";
+				cout << "Â¡Â¤";
 			}
 			else if (board_2[h][l] == 1) {
-				cout << "¡ñ";
+				cout << "Â¡Ã±";
 			}
 			else if (board_2[h][l] == 2) {
-				cout << "¡ð";
+				cout << "Â¡Ã°";
 			}
 		}
 		cout << endl;
