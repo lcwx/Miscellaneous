@@ -1,5 +1,6 @@
 import numpy as np
 import jieba
+import time
 
 
 # read the stop word list
@@ -7,6 +8,18 @@ def init_stopwords():
     stopwords_file = open('stopwords.txt', 'r', encoding='UTF-8')
     stopwords_list = []
     for line in stopwords_file.readlines():
+        # if '\n' in line:
+        #     cnt = 0
+        #     for ele in line:
+        #         cnt = cnt + 1
+        #         if ele == '\\':
+        #             # print(ele)
+        #             break
+        #     line = line[:cnt-1]
+        #     # print(line)
+        # print(line.strip("\n"))
+        # print(line)
+        line = line.strip("\n")
         stopwords_list.append(line)
     # print(stopwords_list)
     # print(stopwords_list[0])
@@ -19,15 +32,25 @@ def devide_words(raw_word, swList):
     # use jieba
     # words = np.array(jieba.cut(raw_word, cut_all=False))
     words = list(jieba.cut(raw_word, cut_all=False))
+    # print(words)
+    # swList.tolist()
+    # print(swList)
+    copy_words = words[:]
     for word in words:
+        # print(word)
         if word in swList:
-            words.remove(word)
+            # print("Done")
+            # print(word)
+            # Woc, 这个bug是真tm坑人啊
+            copy_words.remove(word)
 
     temp = '\n'
-    if temp in words:
-        words.remove('\n')
-    words = np.array(words)
-    return words
+    if temp in copy_words:
+        # words.remove('\n')
+        copy_words.remove('\n')
+    #words = np.array(words)
+    copy_words = np.array(copy_words)
+    return copy_words
 
 
 def loadtoFiles():
@@ -39,82 +62,83 @@ def loadtoFiles():
     file_input = 'news_data.txt'
     file_output_test_labels = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_labels = file_output_test_labels + \
-        "naive Bayes/naive Bayes/test_labels.txt"
+        "Dataset/test_labels.txt"
 
     file_output_training_car = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_car = file_output_training_car + \
-        'naive Bayes/naive Bayes/train_data_car.txt'
+        'Dataset/train_data_car.txt'
     file_output_test_car = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_car = file_output_test_car + \
-        'naive Bayes/naive Bayes/test_data_car.txt'
+        'Dataset/test_data_car.txt'
 
     file_output_training_finance = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_finance = file_output_training_finance + \
-        'naive Bayes/naive Bayes/train_data_finance.txt'
+        'Dataset/train_data_finance.txt'
     file_output_test_finance = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_finance = file_output_test_finance + \
-        'naive Bayes/naive Bayes/test_data_finance.txt'
+        'Dataset/test_data_finance.txt'
 
     file_output_training_science = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_science = file_output_training_science + \
-        'naive Bayes/naive Bayes/train_data_science.txt'
+        'Dataset/train_data_science.txt'
     file_output_test_science = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_science = file_output_test_science + \
-        'naive Bayes/naive Bayes/test_data_science.txt'
+        'Dataset/test_data_science.txt'
 
     file_output_training_health = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_health = file_output_training_health + \
-        'naive Bayes/naive Bayes/train_data_health.txt'
+        'Dataset/train_data_health.txt'
     file_output_test_health = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_health = file_output_test_health + \
-        'naive Bayes/naive Bayes/test_data_health.txt'
+        'Dataset/test_data_health.txt'
 
     file_output_training_sports = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_sports = file_output_training_sports + \
-        'naive Bayes/naive Bayes/train_data_sports.txt'
+        'Dataset/train_data_sports.txt'
     file_output_test_sports = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_sports = file_output_test_sports + \
-        'naive Bayes/naive Bayes/test_data_sports.txt'
+        'Dataset/test_data_sports.txt'
 
     file_output_training_education = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_education = file_output_training_education + \
-        'naive Bayes/naive Bayes/train_data_education.txt'
+        'Dataset/train_data_education.txt'
     file_output_test_education = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_education = file_output_test_education + \
-        'naive Bayes/naive Bayes/test_data_education.txt'
+        'Dataset/test_data_education.txt'
 
     file_output_training_culture = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_culture = file_output_training_culture + \
-        'naive Bayes/naive Bayes/train_data_culture.txt'
+        'Dataset/train_data_culture.txt'
     file_output_test_culture = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_culture = file_output_test_culture + \
-        'naive Bayes/naive Bayes/test_data_culture.txt'
+        'Dataset/test_data_culture.txt'
 
     file_output_training_military = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_military = file_output_training_military + \
-        'naive Bayes/naive Bayes/train_data_military.txt'
+        'Dataset/train_data_military.txt'
     file_output_test_military = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_military = file_output_test_military + \
-        'naive Bayes/naive Bayes/test_data_military.txt'
+        'Dataset/test_data_military.txt'
 
     file_output_training_joy = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_joy = file_output_training_joy + \
-        'naive Bayes/naive Bayes/train_data_joy.txt'
+        'Dataset/train_data_joy.txt'
     file_output_test_joy = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_joy = file_output_test_joy + \
-        'naive Bayes/naive Bayes/test_data_joy.txt'
+        'Dataset/test_data_joy.txt'
 
     file_output_training_fashion = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_training_fashion = file_output_training_fashion + \
-        'naive Bayes/naive Bayes/train_data_fashion.txt'
+        'Dataset/train_data_fashion.txt'
     file_output_test_fashion = 'C:/Users/28012/Desktop/Statistical Learning/naive Bayes/'
     file_output_test_fashion = file_output_test_fashion + \
-        'naive Bayes/naive Bayes/test_data_fashion.txt'
+        'Dataset/test_data_fashion.txt'
 
     # Initialization
     data = open(file_input, 'r', encoding='UTF-8')
     labels = open(file_output_test_labels, "w")
     swList = init_stopwords()
+    # print(swList)
 
     train_set_car = []
     f_train_car = open(file_output_training_car, "w")
@@ -396,9 +420,12 @@ def loadtoFiles():
 
 if __name__ == "__main__":
 
+    t1 = time.clock()
     # arr_sw = init_stopwords()
-    # print(arr)
-    # test = "我是帅哥"
+    # # print(arr_sw)
+    # test = "12我是一个有很强自我【约束能力】的帅哥"
     # arr_w = devide_words(test, arr_sw)
     # print(arr_w)
     loadtoFiles()
+    t2 = time.clock()
+    print(t2-t1)
