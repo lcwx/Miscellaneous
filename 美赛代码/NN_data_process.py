@@ -269,7 +269,7 @@ print(numpy.shape(dataset_test))
 print(numpy.shape(train_labels))
 
 # Parameters
-learning_rate = 0.1
+learning_rate = 0.01
 EPOCHS = 3000
 
 # Network Parameters
